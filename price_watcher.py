@@ -1,6 +1,12 @@
 # STILL TO DO
 # integration tests!
 # error log
+# make paths relative to where file is located
+# on pi: crontab mailto
+# on pi: git
+
+# 'import' changes made on pi
+
 
 from datetime import datetime
 import json
