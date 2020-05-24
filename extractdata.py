@@ -35,6 +35,10 @@ def rx_find(pattern, content):
         raise RuntimeError(f"Not found")
     return found.group(1)
 
+def get_currency(symbol):
+    if symbol == '\u20ac':
+        return "EUR"
+    else: return None
 
 ##
 ## functions for specific stores
@@ -42,8 +46,9 @@ def rx_find(pattern, content):
 def extract_data_thomann(url):
     content = fetch_html(url)
     name = rx_find(RX_THOMANN_NAME, content)
-    curr, price = rx_find(RX_THOMANN_PRICE, content).split(" ")
+    curr_sym, price = rx_find(RX_THOMANN_PRICE, content).split(" ")
     price = int(price.replace(".", ""))
+    curr = get_currency(curr_sym)
     return name, price, curr
 
 
