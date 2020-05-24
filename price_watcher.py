@@ -1,14 +1,6 @@
 # STILL TO DO
 # integration tests!
-# structure price_fetch object
-# abstract links_list into file?
-    # [prod_name, price_str, price_int, timestamp, url]
-# can fetch_html be further abstracted?
-
-# usecase:
-# https://www.thomann.de/intl/yamaha_slb_300_silent_bass.htm
-# <span class="primary">€ 3.890</span>
-# <h1 itemprop="name">Yamaha SLB 300 Silent Bass</h1>
+# error log
 
 from datetime import datetime
 import json
@@ -20,8 +12,8 @@ LOGROOT = "logs/"
 
 def get_list(file):
     with open(file) as f:
-        return f.read().splitlines()
-
+        return [line for line in f.read().splitlines() if line]
+    
 def price_watch(url):
     product_name, product_price, currency = extract_data(url)
     timestamp = str(datetime.now())
@@ -30,9 +22,7 @@ def price_watch(url):
                   "Currency": currency,
                   "URL": url,
                   "Timestamp": timestamp }
-    print(url)
-    print(f"{product_name}: {product_price} {currency}")
-    print()
+    print(f"Fetched: {url}\n{product_name}: {product_price} {currency}\n")
     return json_dict
 
 if __name__ == "__main__":
