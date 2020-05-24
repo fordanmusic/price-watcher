@@ -4,5 +4,5 @@ Fetches name & price for selected products. Productpages are stored in watch.lis
 
 # Supported sites
 
-thomann.de
-kiwi-electronics.nl
+- thomann.de
+- kiwi-electronics.nl
