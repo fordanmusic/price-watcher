@@ -19,14 +19,12 @@
 # https://pypi.org/project/pyppeteer/
 # https://pyppeteer.github.io/pyppeteer/
 
-# interesting pages:
-# https://www.thomann.de/nl/cat_brands.html
-# https://www.monster.com/jobs/search/?q=Software-Developer
-
 
 # ideas:
 # - music price watch
+# - creating product overview (ex: list of all guitar pedals + category)
 # - (pixel)art 'scraper'
+# - bot detection on reddit
 
 
 ###
