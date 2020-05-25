@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+
+
 # STILL TO DO
 # integration tests!
 # error log
@@ -5,30 +8,31 @@
 # on pi: crontab mailto
 # on pi: git
 
-# 'import' changes made on pi
-
-
-from datetime import datetime
 import json
+import os
+from pathlib import Path
+from datetime import datetime
 from extractdata import extract_data
 
-WATCHLIST = "watch.list"
-LOGROOT = "logs/"
+ROOT = str(Path(os.path.abspath(os.path.realpath(__file__))).parent)
+WATCHLIST = ROOT + "/watch.list"
+LOGROOT = ROOT + "/logs/"
 
 
 def get_list(file):
     with open(file) as f:
-        return [line for line in f.read().splitlines() if line]
+        return [line for line in f.read().splitlines() if line and not line.startswith('#')]
     
 def price_watch(url):
-    product_name, product_price, currency = extract_data(url)
+    product_name, product_price, currency, avail = extract_data(url)
     timestamp = str(datetime.now())
     json_dict = { "Product name": product_name,
                   "Product price": product_price,
                   "Currency": currency,
+                  "Availability": avail,
                   "URL": url,
                   "Timestamp": timestamp }
-    print(f"Fetched: {url}\n{product_name}: {product_price} {currency}\n")
+    print(f"Fetched: {url}\n{product_name}: {product_price} {currency} -- {avail}\n")
     return json_dict
 
 if __name__ == "__main__":
