@@ -31,9 +31,9 @@ def price_watch(url):
                   "Availability": avail,
                   "URL": url,
                   "Timestamp": timestamp }
-    print(f"Fetched: {url}")
+    #print(f"Fetched: {url}")
     print(f"{product_name:50}{product_price:8} {currency:5}({avail})")
-    print()
+    #print()
     return json_dict
 
 if __name__ == "__main__":
