@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
 
-
 # STILL TO DO
 # integration tests!
-# tabled output? (prinft)
 # error log
 # make paths relative to where file is located
 # on pi: crontab mailto
@@ -33,7 +31,9 @@ def price_watch(url):
                   "Availability": avail,
                   "URL": url,
                   "Timestamp": timestamp }
-    print(f"Fetched: {url}\n{product_name}: {product_price} {currency} -- {avail}\n")
+    print(f"Fetched: {url}")
+    print(f"{product_name:50}{product_price:8} {currency:5}({avail})")
+    print()
     return json_dict
 
 if __name__ == "__main__":
