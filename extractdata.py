@@ -30,9 +30,11 @@ def extract_data(url):
 
 def fetch_html(url):
     errmsg = "URL retrieval problem at"
-    fetched = requests.get(url)
+    fetched = requests.get(url, timeout=10)
     if fetched.status_code != 200:
         raise RuntimeError(f"{errmsg} {url}: status {fetched.status_code}")
+    if fetched.headers['Content-Type'].split(';')[0]  != 'text/html':
+        raise RuntimeError(f"{errmsg} {url}: content type wrong: {fetched.headers['Content-Type']}")
     if len(fetched.content) < 50:
         raise RuntimeError(f"{errmsg} {url}: filesize too small: {len(fetched.content)}")
     if len(fetched.content) > 1000000:

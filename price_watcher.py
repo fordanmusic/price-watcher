@@ -3,6 +3,7 @@
 
 # STILL TO DO
 # integration tests!
+# tabled output? (prinft)
 # error log
 # make paths relative to where file is located
 # on pi: crontab mailto
